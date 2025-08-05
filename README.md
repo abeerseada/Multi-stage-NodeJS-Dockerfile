@@ -32,10 +32,27 @@ This project demonstrates how to use multi-stage builds in a Node.js Dockerfile 
     ```
     docker build -t my-node-app .
     ```
-2. Run the container:
+2. Build the Docker image for each stage (optional, for debugging or inspection):
+
+- Build the production stage:
     ```
-    docker run -it --rm my-node-app
+    docker build --target prod -t my-node-app:prod .
     ```
+
+- Build the development stage:
+    ```
+    docker build --target dev -t my-node-app:dev .
+    ```
+
+- Build the test stage:
+    ```
+    docker build --target test -t my-node-app:test .
+    ```
+
+3. Run the container(production stage):
+```
+docker run -it -p 3000:3000 my-node-app:prod
+```
 
 ## Notes
 
